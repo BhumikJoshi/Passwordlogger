@@ -133,10 +133,13 @@ def show_passwords():
         if selected_item:
             item = tree.item(selected_item)
             password_id = item['values'][0]
-            delete_password(password_id)
-            tree.delete(selected_item)
+            confirm = messagebox.askyesno("Confirm Deletion", "Are you sure you want to delete the selected password?")
+            if confirm:
+                delete_password(password_id)
+                tree.delete(selected_item)
         else:
             messagebox.showerror("Error", "Please select an entry to delete.")
+
     
     def on_copy():
         selected_item = tree.selection()
